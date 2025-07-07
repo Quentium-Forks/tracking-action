@@ -22,15 +22,15 @@ runs:
       run: |
         set +e
 
-        if grep -q "(eulerian)" ./tracking-html.html; then
+        if grep -Eq "(eulerian)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"google\"}"
-        elif grep -q "(matomo)" ./tracking-html.html; then
+        elif grep -Eq "(matomo)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"matomo\"}"
-        elif grep -q "(piwik)" ./tracking-html.html; then
+        elif grep -Eq "(piwik)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"piwik\"}"
-        elif grep -q "(google|gtag|gtm)" ./tracking-html.html; then
+        elif grep -Eq "(google|gtag|gtm)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"google\"}"
-        elif grep -q "(piano)" ./tracking-html.html; then
+        elif grep -Eq "(piano)" ./tracking-html.html; then
           JSON=$(echo $JSON | jq '.service = "piano"')
         fi
 
