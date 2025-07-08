@@ -23,15 +23,15 @@ runs:
         set +e
 
         if grep -Eq "(eulerian)" ./tracking-html.html; then
-          JSON="{\"tracking\": true, \"service\": \"google\"}"
+          JSON="{\"tracking\": true, \"service\": \"eulerian\"}"
         elif grep -Eq "(matomo)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"matomo\"}"
         elif grep -Eq "(piwik)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"piwik\"}"
+        elif grep -Eq "(piano|aticdn|smarttag)" ./tracking-html.html; then
+          JSON="{\"tracking\": true, \"service\": \"piano\"}"
         elif grep -Eq "(google|gtag|gtm)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"google\"}"
-        elif grep -Eq "(piano)" ./tracking-html.html; then
-          JSON=$(echo $JSON | jq '.service = "piano"')
         fi
 
         echo "$JSON" > ${{ github.workspace }}/${{ inputs.output }}
