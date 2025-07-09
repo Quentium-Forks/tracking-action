@@ -32,6 +32,8 @@ runs:
           JSON="{\"tracking\": true, \"service\": \"piano\"}"
         elif grep -Eq "(google|gtag|gtm)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"google\"}"
+        elif grep -Eq "(tarteaucitron|tac)" ./tracking-html.html; then
+          JSON="{\"tracking\": null, \"service\": null}"
         else
           JSON="{\"tracking\": false}"
         fi
