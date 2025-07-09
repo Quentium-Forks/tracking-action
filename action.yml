@@ -32,6 +32,8 @@ runs:
           JSON="{\"tracking\": true, \"service\": \"piano\"}"
         elif grep -Eq "(google|gtag|gtm)" ./tracking-html.html; then
           JSON="{\"tracking\": true, \"service\": \"google\"}"
+        else
+          JSON="{\"tracking\": false}"
         fi
 
         echo "$JSON" > ${{ github.workspace }}/${{ inputs.output }}
